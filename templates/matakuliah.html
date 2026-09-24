@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mata Kuliah</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="logo">
+            🎓 Akademik
+        </div>
+
+        <a href="{{ url_for('dashboard') }}" class="menu">
+            🏠 Dashboard
+        </a>
+
+        <a href="{{ url_for('mahasiswa') }}" class="menu">
+            👨‍🎓 Data Mahasiswa
+        </a>
+
+        <a href="{{ url_for('matakuliah') }}" class="menu active">
+            📚 Mata Kuliah
+        </a>
+
+        <a href="#" class="menu">
+            📝 Nilai
+        </a>
+
+        <a href="#" class="menu">
+            📅 Jadwal Kuliah
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="menu logout">
+            🚪 Logout
+        </a>
+
+    </div>
+
+
+    <!-- KONTEN UTAMA -->
+    <div class="main">
+
+        <!-- HEADER -->
+        <div class="topbar">
+
+            <div>
+                <h1>Mata Kuliah</h1>
+                <p>Kelola data mata kuliah</p>
+            </div>
+
+            <div class="admin">
+                👤 Admin
+            </div>
+
+        </div>
+
+
+        <!-- FORM TAMBAH -->
+        <div class="content-box">
+
+            <h2>Tambah Mata Kuliah</h2>
+
+            <p>
+                Masukkan data mata kuliah baru.
+            </p>
+
+            <form action="{{ url_for('tambah_matakuliah') }}" method="POST">
+
+                <div>
+                    <label>Kode Mata Kuliah</label>
+
+                    <input
+                        type="text"
+                        name="kode"
+                        placeholder="Contoh: TI101"
+                        required
+                    >
+                </div>
+
+
+                <div>
+                    <label>Nama Mata Kuliah</label>
+
+                    <input
+                        type="text"
+                        name="nama"
+                        placeholder="Contoh: Pemrograman Web"
+                        required
+                    >
+                </div>
+
+
+                <div>
+                    <label>SKS</label>
+
+                    <input
+                        type="number"
+                        name="sks"
+                        min="1"
+                        max="6"
+                        placeholder="Contoh: 3"
+                        required
+                    >
+                </div>
+
+
+                <div>
+                    <label>Semester</label>
+
+                    <input
+                        type="number"
+                        name="semester"
+                        min="1"
+                        max="14"
+                        placeholder="Contoh: 5"
+                        required
+                    >
+                </div>
+
+
+                <button type="submit">
+                    ➕ Tambah Mata Kuliah
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- DAFTAR MATA KULIAH -->
+        <div class="content-box">
+
+            <h2>Daftar Mata Kuliah</h2>
+
+            <p>
+                Data mata kuliah yang sudah tersimpan.
+            </p>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>No</th>
+                        <th>Kode</th>
+                        <th>Nama Mata Kuliah</th>
+                        <th>SKS</th>
+                        <th>Semester</th>
+                        <th>Aksi</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% if matakuliah %}
+
+                        {% for mk in matakuliah %}
+
+                        <tr>
+
+                            <td>
+                                {{ loop.index }}
+                            </td>
+
+                            <td>
+                                {{ mk["kode"] }}
+                            </td>
+
+                            <td>
+                                {{ mk["nama"] }}
+                            </td>
+
+                            <td>
+                                {{ mk["sks"] }}
+                            </td>
+
+                            <td>
+                                {{ mk["semester"] }}
+                            </td>
+
+                            <td>
+
+                                <a
+                                    href="{{ url_for('hapus_matakuliah', id=mk['id']) }}"
+                                    onclick="return confirm('Yakin ingin menghapus data ini?')"
+                                >
+                                    🗑️ Hapus
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td colspan="6" style="text-align: center;">
+                                Belum ada mata kuliah.
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
+            © 2026 Web Akademik | Sistem Informasi Akademik
+        </footer>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Akademik</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="logo">
+            🎓 Akademik
+        </div>
+
+        <a href="{{ url_for('dashboard') }}" class="menu active">
+            🏠 Dashboard
+        </a>
+
+        <a href="{{ url_for('mahasiswa') }}" class="menu">
+            👨‍🎓 Data Mahasiswa
+        </a>
+
+        <a href="{{ url_for('matakuliah') }}" class="menu">
+            📚 Mata Kuliah
+        </a>
+
+        <a href="#" class="menu">
+            📝 Nilai
+        </a>
+
+        <a href="#" class="menu">
+            📅 Jadwal Kuliah
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="menu logout">
+            🚪 Logout
+        </a>
+
+    </div>
+
+
+    <!-- KONTEN UTAMA -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+
+                <p>
+                    Selamat datang kembali, Admin 👋
+                </p>
+            </div>
+
+            <div class="admin">
+                👤 Admin
+            </div>
+
+        </div>
+
+
+        <!-- WELCOME -->
+        <div class="welcome">
+
+            <h2>
+                Selamat Datang di Sistem Akademik 🎓
+            </h2>
+
+            <p>
+                Kelola data akademik dengan lebih mudah, cepat,
+                dan terorganisir.
+            </p>
+
+        </div>
+
+
+        <!-- CARD -->
+        <div class="cards">
+
+            <!-- MAHASISWA -->
+            <a href="{{ url_for('mahasiswa') }}" class="card">
+
+                <div class="icon">
+                    👨‍🎓
+                </div>
+
+                <div>
+                    <p>Data Akademik</p>
+
+                    <h2>
+                        Mahasiswa
+                    </h2>
+                </div>
+
+            </a>
+
+
+            <!-- MATA KULIAH -->
+            <a href="{{ url_for('matakuliah') }}" class="card">
+
+                <div class="icon">
+                    📚
+                </div>
+
+                <div>
+                    <p>Data Akademik</p>
+
+                    <h2>
+                        Mata Kuliah
+                    </h2>
+                </div>
+
+            </a>
+
+
+            <!-- NILAI -->
+            <div class="card">
+
+                <div class="icon">
+                    📝
+                </div>
+
+                <div>
+                    <p>Akademik</p>
+
+                    <h2>
+                        Nilai
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <!-- JADWAL -->
+            <div class="card">
+
+                <div class="icon">
+                    📅
+                </div>
+
+                <div>
+                    <p>Perkuliahan</p>
+
+                    <h2>
+                        Jadwal
+                    </h2>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AKSES CEPAT -->
+        <div class="content-box">
+
+            <h2>
+                Akses Cepat
+            </h2>
+
+            <p>
+                Menu yang sering digunakan
+            </p>
+
+
+            <div class="quick-menu">
+
+                <!-- DATA MAHASISWA -->
+                <a href="{{ url_for('mahasiswa') }}" class="quick-card">
+
+                    <div class="quick-icon">
+                        👨‍🎓
+                    </div>
+
+                    <h3>
+                        Data Mahasiswa
+                    </h3>
+
+                    <p>
+                        Kelola data mahasiswa
+                    </p>
+
+                </a>
+
+
+                <!-- MATA KULIAH -->
+                <a href="{{ url_for('matakuliah') }}" class="quick-card">
+
+                    <div class="quick-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        Mata Kuliah
+                    </h3>
+
+                    <p>
+                        Kelola data mata kuliah
+                    </p>
+
+                </a>
+
+
+                <!-- NILAI -->
+                <div class="quick-card disabled">
+
+                    <div class="quick-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Nilai
+                    </h3>
+
+                    <p>
+                        Segera tersedia
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            © 2026 Web Akademik |
+            Sistem Informasi Akademik
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

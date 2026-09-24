@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Mahasiswa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="logo">
+            🎓 Akademik
+        </div>
+
+        <a href="{{ url_for('dashboard') }}" class="menu">
+            🏠 Dashboard
+        </a>
+
+        <a href="{{ url_for('mahasiswa') }}" class="menu active">
+            👨‍🎓 Data Mahasiswa
+        </a>
+
+        <a href="{{ url_for('matakuliah') }}" class="menu">
+            📚 Mata Kuliah
+        </a>
+
+        <a href="#" class="menu">
+            📝 Nilai
+        </a>
+
+        <a href="#" class="menu">
+            📅 Jadwal Kuliah
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="menu logout">
+            🚪 Logout
+        </a>
+
+    </div>
+
+
+    <!-- KONTEN UTAMA -->
+    <div class="main">
+
+        <!-- HEADER -->
+        <div class="topbar">
+
+            <div>
+                <h1>Data Mahasiswa</h1>
+                <p>Kelola data mahasiswa</p>
+            </div>
+
+            <div class="admin">
+                👤 Admin
+            </div>
+
+        </div>
+
+
+        <!-- FORM TAMBAH MAHASISWA -->
+        <div class="content-box">
+
+            <h2>Tambah Mahasiswa</h2>
+
+            <p>
+                Masukkan data mahasiswa baru.
+            </p>
+
+            <form action="{{ url_for('tambah_mahasiswa') }}" method="POST">
+
+                <div>
+                    <label>NIM</label>
+
+                    <input
+                        type="text"
+                        name="nim"
+                        placeholder="Contoh: 2310001"
+                        required
+                    >
+                </div>
+
+
+                <div>
+                    <label>Nama Mahasiswa</label>
+
+                    <input
+                        type="text"
+                        name="nama"
+                        placeholder="Contoh: Renn Saputra"
+                        required
+                    >
+                </div>
+
+
+                <div>
+                    <label>Program Studi</label>
+
+                    <input
+                        type="text"
+                        name="prodi"
+                        placeholder="Contoh: Teknik Informatika"
+                        required
+                    >
+                </div>
+
+
+                <div>
+                    <label>Semester</label>
+
+                    <input
+                        type="number"
+                        name="semester"
+                        min="1"
+                        max="14"
+                        placeholder="Contoh: 5"
+                        required
+                    >
+                </div>
+
+
+                <button type="submit">
+                    ➕ Tambah Mahasiswa
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- DAFTAR MAHASISWA -->
+        <div class="content-box">
+
+            <h2>Daftar Mahasiswa</h2>
+
+            <p>
+                Data mahasiswa yang sudah tersimpan.
+            </p>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>No</th>
+                        <th>NIM</th>
+                        <th>Nama</th>
+                        <th>Program Studi</th>
+                        <th>Semester</th>
+                        <th>Aksi</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% if mahasiswa %}
+
+                        {% for mhs in mahasiswa %}
+
+                        <tr>
+
+                            <td>
+                                {{ loop.index }}
+                            </td>
+
+                            <td>
+                                {{ mhs["nim"] }}
+                            </td>
+
+                            <td>
+                                {{ mhs["nama"] }}
+                            </td>
+
+                            <td>
+                                {{ mhs["prodi"] }}
+                            </td>
+
+                            <td>
+                                {{ mhs["semester"] }}
+                            </td>
+
+                            <td>
+
+                                <a
+                                    href="{{ url_for('hapus_mahasiswa', id=mhs['id']) }}"
+                                    onclick="return confirm('Yakin ingin menghapus data ini?')"
+                                >
+                                    🗑️ Hapus
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td colspan="6" style="text-align: center;">
+                                Belum ada data mahasiswa.
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
+            © 2026 Web Akademik | Sistem Informasi Akademik
+        </footer>
+
+    </div>
+
+</body>
+</html>
